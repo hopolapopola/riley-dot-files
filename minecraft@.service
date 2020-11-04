@@ -1,0 +1,41 @@
+[Unit]
+Description=Minecraft Server %I
+After=network.target
+
+[Service]
+WorkingDirectory=/srv/minecraft/%I
+PrivateUsers=true
+User=minecraft
+Group=minecraft
+ProtectSystem=full
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+ExecStart=/bin/sh -c '/usr/bin/screen -DmS mc-%I /usr/bin/java -server -Xms2048 -Xmx4096 -XX:+UseG1GC -XX:+CMSIncrementalPacing -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=2 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -jar $(ls -v | grep -i "minecraft_server.*jar\|fabric*.jar\|papermc*.jar | head -n 1) nogui'
+
+ExecReload=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "reload"\\015'
+
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say SERVER SHUTTING DOWN in 15 Seconds!!!"\\015'
+ExecStop=/usr/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 10 seconds!"\\015'
+ExecStop=/usr/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 5 seconds!"\\015'
+ExecStop=/usr/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 4 seconds!"\\015'
+ExecStop=/usr/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 3 seconds!"\\015'
+ExecStop=/usr/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 2 seconds!"\\015'
+ExecStop=/usr/bin/sleep 1
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "say 1 second!"\\015'
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "save-all"\\015'
+ExecStop=/usr/bin/screen -p 0 -S mc-%I -X eval 'stuff "stop"\\015'
+ExecStop=/usr/bin/sleep 10
+
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
