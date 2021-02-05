@@ -1,9 +1,9 @@
 #!/bin/bash
 # Test for distro
 dist=$(cat /etc/issue | cut -c-4)
-if [ "$dist" = "Arch"]; then
+if [ "$dist" = "Arch" ]; then
 	sudo pacman -Syu zsh
-elif [ "$dist" = "Ubun" || "$dist" = "Debi" ]; then
+elif [ "$dist" = "Ubun" ] || [ "$dist" = "Debi" ]; then
 	sudo apt install zsh
 fi
 #Install oh-my-zsh
