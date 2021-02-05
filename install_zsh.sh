@@ -10,6 +10,7 @@ elif [ "$dist" = "Ubun" ] || [ "$dist" = "Debi" ]; then
 fi
 #Install oh-my-zsh
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+echo "Change your shell to zsh"
 chsh -s $(which zsh)
 #Grab the extension I like
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
