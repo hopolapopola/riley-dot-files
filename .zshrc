@@ -101,4 +101,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias breadtop="htop"
 source /usr/share/doc/find-the-command/ftc.zsh info quiet
