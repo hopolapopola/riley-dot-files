@@ -84,7 +84,7 @@ get_os() {
 		Darwin)	
 			os=$darwin_name 
 		;;
-		
+
 		Linux|GNU*) 
 			os=Linux 
 		;;
@@ -158,7 +158,7 @@ main() {
 	install_zsh
 	copy_zshrc
 	zsh_goodies
-	if [[ "$1" = "--extra"]]; then
+	if [[ "$1" = "--extra" ]]; then
 		other_goodies
 	fi
 	printf "We gaming :sunglasses:"
