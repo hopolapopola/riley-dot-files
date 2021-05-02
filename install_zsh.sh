@@ -18,6 +18,7 @@ install_ohmyzsh() {
 }
 
 zsh_goodies() {
+	install_ohmyzsh
 	#Grab the extension I like
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	#Put the custom theme into the right folder :)
