@@ -153,7 +153,7 @@ main() {
 	install_zsh
 	copy_zshrc
 	zsh_goodies
-	if [[ "$1" = "--extra"]]
+	if [[ "$1" = "--extra"]] then
 		other_goodies
 	fi
 	printf "We gaming :sunglasses:"
