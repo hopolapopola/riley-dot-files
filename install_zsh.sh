@@ -22,7 +22,7 @@ zsh_goodies() {
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	#Put the custom theme into the right folder :)
 	cp candy_custom.zsh-theme ~/.oh-my-zsh/themes
-	if [ "$distro" = "Arch"]; then
+	if [ "$distro" = "Arch" ]; then
 		git clone https://aur.archlinux.org/find-the-command.git
 		cd find-the-command
 		makepkg -si 
