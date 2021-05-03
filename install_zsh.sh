@@ -38,13 +38,16 @@ other_goodies() {
 			cp theming/kitty.conf $HOME/.config/kitty/kitty.conf
 			cp neofetch/neofetch_arch.conf $HOME/.config/neofetch/config.conf
 			cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/byleth_neofetch.png
+			;;
 		Ubun|Debi|iPhone)
 			sudo apt install neofetch
 			cp neofetch_noimage.conf $HOME/.config/neofetch/config.conf
+			;;
 		macOS)
 			brew install neofetch
 			cp neofetch_macos.conf $HOME/.config/neofetch/config.conf
 			cp byleth_neofetch.png $HOME/.config/neofetch/config.conf
+			;;
 		*)
 			printf "Other goodies couldn't be installed :pensive:"
 			;;
