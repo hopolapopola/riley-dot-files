@@ -41,7 +41,7 @@ other_goodies() {
 			;;
 		Ubun|Debi|iPhone)
 			sudo apt install neofetch
-			cp neofetch_noimage.conf $HOME/.config/neofetch/config.conf
+			cp neofetch/neofetch_noimage.conf $HOME/.config/neofetch/config.conf
 			;;
 		macOS)
 			brew install neofetch
