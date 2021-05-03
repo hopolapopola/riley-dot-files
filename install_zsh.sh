@@ -12,7 +12,7 @@
 
 install_ohmyzsh() {
 	#Install oh-my-zsh, now a function!
-	git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+	git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh
 	echo "Change your shell to zsh"
 	chsh -s $(which zsh)
 }
@@ -22,7 +22,7 @@ zsh_goodies() {
 	#Grab the extension I like
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	#Put the custom theme into the right folder :)
-	cp candy_custom.zsh-theme ~/.oh-my-zsh/themes
+	cp theming/candy_custom.zsh-theme $HOME/.oh-my-zsh/themes
 	if [ "$distro" = "Arch" ]; then
 		git clone https://aur.archlinux.org/find-the-command.git
 		cd find-the-command
@@ -32,25 +32,23 @@ zsh_goodies() {
 }
 
 other_goodies() {
-	#WIP, can't use *yet*
-	# case $distro in
-	# 	Arch)
-	# 		sudo pacman -Syu neofetch kitty
-	# 		cp kitty.conf ~/.config/kitty/kitty.conf
-	# 		cp neofetch_config.conf ~/.config/neofetch/config.conf
-	# 		cp byleth_neofetch.png ~/.config/neofetch/byleth_neofetch.png
-	# 	Ubun|Debi|iPhone)
-	# 		sudo apt install neofetch
-	# 		cp neofetch_config.conf ~/.config/neofetch/config.conf
-	# 		cp byleth_neofetch.png ~/.config/neofetch/byleth_neofetch.png
-	# 	macOS)
-	# 		brew install neofetch
-	# 		cp neofetch_config.conf ~/.config/neofetch/config.conf
-	# 		cp byleth_neofetch.png ~/.config/neofetch/config.conf
-	# 	*)
-	# 		printf "Other goodies couldn't be installed :pensive:"
-	# 		;;
-	# esac
+	case $distro in
+		Arch)
+			sudo pacman -Syu neofetch kitty
+			cp theming/kitty.conf $HOME/.config/kitty/kitty.conf
+			cp neofetch/neofetch_arch.conf $HOME/.config/neofetch/config.conf
+			cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/byleth_neofetch.png
+		Ubun|Debi|iPhone)
+			sudo apt install neofetch
+			cp neofetch_noimage.conf $HOME/.config/neofetch/config.conf
+		macOS)
+			brew install neofetch
+			cp neofetch_macos.conf $HOME/.config/neofetch/config.conf
+			cp byleth_neofetch.png $HOME/.config/neofetch/config.conf
+		*)
+			printf "Other goodies couldn't be installed :pensive:"
+			;;
+	esac
 
 	printf "Well passing the arg worked?"
 }
@@ -137,13 +135,13 @@ install_zsh() {
 copy_zshrc() {
 	case $distro in
 		Arch)
-			cp .zshrc_arch ~/.zshrc
+			cp zshrc/.zshrc_arch $HOME/.zshrc
 			;;
 		Ubun|Debi|macOS)
-			cp .zshrc_buntu ~/.zshrc
+			cp zshrc/.zshrc_buntu $HOME/.zshrc
 			;;
 		iPhone)
-			cp .zshrc_ios ~/.zshrc
+			cp zshrc/.zshrc_ios $HOME/.zshrc
 			;;
 		*)
 			printf "Realistically, you're never gonna see this because it would've errored out way before"
