@@ -45,8 +45,8 @@ other_goodies() {
 			;;
 		macOS)
 			brew install neofetch
-			cp neofetch_macos.conf $HOME/.config/neofetch/config.conf
-			cp byleth_neofetch.png $HOME/.config/neofetch/config.conf
+			cp neofetch/neofetch_macos.conf $HOME/.config/neofetch/config.conf
+			cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/config.conf
 			;;
 		*)
 			printf "Other goodies couldn't be installed :pensive:"
