@@ -49,8 +49,6 @@ other_goodies() {
 			printf "Other goodies couldn't be installed :pensive:"
 			;;
 	esac
-
-	printf "Well passing the arg worked?"
 }
 
 cache_uname() {
