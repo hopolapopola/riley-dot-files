@@ -38,22 +38,34 @@ other_goodies() {
 			cp theming/kitty.conf $HOME/.config/kitty/kitty.conf
 			cp neofetch/neofetch_arch.conf $HOME/.config/neofetch/config.conf
 			cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/byleth_neofetch.png
+			printf "Extras v1-arch done"
 			;;
 		Ubun|Debi|iPhone)
 			sudo apt install neofetch
 			cp neofetch/neofetch_noimage.conf $HOME/.config/neofetch/config.conf
+			printf "Extras v1 done" 
 			;;
 		macOS)
 			brew install neofetch
 			cp neofetch/neofetch_macos.conf $HOME/.config/neofetch/config.conf
 			cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/config.conf
+			printf "Extras v1 done"
 			;;
 		*)
-			printf "Other goodies couldn't be installed :pensive:"
+			printf "Extras couldn't be installed :pensive:"
 			;;
 	esac
 }
-
+red_arch() {
+    if [[ "$distro" == "Arch" ]]; then
+        sudo pacman -Syu neofetch kitty
+        cp arch-owo-v2/kitty.conf $HOME/.config/kitty/kitty.conf
+        cp arch-owo-v2/neofetch.conf $HOME/.config/neofetch/config.conf
+        cp neofetch/byleth_neofetch.png $HOME/.config/neofetch/byleth_neofetch.png
+        printf "Extras v2-arch done"
+        printf "https://www.youtube.com/watch?v=-AuQZrUHjhg"
+    fi
+}
 cache_uname() {
 	# from neofetch
 	IFS=" " read -ra uname <<< "$(uname -srm)"
@@ -151,6 +163,21 @@ copy_zshrc() {
 		esac
 }
 
+help_info() {
+    printf "Available options:"
+    printf "\n"
+    printf "These work like any other arg lmao just pass them as SEPARATE ARGS"
+    printf "\n"
+    printf " -i or --install does what you'd think it does"
+    printf "\n"
+    printf " -e or --extras installs the extra stuff too" 
+    printf "\n"
+    printf " -r or --red installs the red version of the extra stuff, but only on arch"
+    printf "\n"
+    printf " -h or --help or just anything not listed here gets you this :)"
+    printf "\n"
+}
+
 main() {
 	cache_uname
 	get_os
@@ -158,12 +185,33 @@ main() {
 	install_zsh
 	copy_zshrc
 	zsh_goodies
-	if [[ "$1" = "--extra" ]]; then
-		other_goodies
-	fi
-	printf "We gaming :sunglasses:"
+	printf "Finished the main things"
 	return 0
 }
 
-main "$@"
+while [ ! -z "$1" ]; do
+    case $1 in
+        --install|-i)
+            shift
+            main
+            ;;
+        --extra|-e)
+            shift
+            other_goodies
+            ;;
+        --red|-r)
+            shift   
+            red_arch
+            ;;
+        --help|-h)
+            shift
+            help_info
+            ;;
+        *)
+            shift
+            help_info
+            ;;
+    esac
+shift
+done
 
